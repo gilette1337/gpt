@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Timer</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #181c24;
+      --text: #e9edf4;
+      --muted: #9aa4b2;
+      --accent: #6ea8ff;
+      --success: #35d07f;
+      --danger: #ff6b6b;
+      --warning: #ffd166;
+      --button: #252b36;
+      --button-hover: #2f3745;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #141922 0%, var(--bg) 45%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      padding: 1rem;
+    }
+
+    .timer-card {
+      width: min(94vw, 520px);
+      background: linear-gradient(160deg, #1b202a 0%, var(--card) 100%);
+      border: 1px solid #2a3342;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      padding: 1.5rem;
+    }
+
+    h1 {
+      margin: 0 0 0.8rem;
+      font-size: 1.25rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .display {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin: 0.8rem 0 1.3rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+
+    .status {
+      min-height: 1.4rem;
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    button {
+      border: 1px solid #384255;
+      background: var(--button);
+      color: var(--text);
+      padding: 0.8rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: transform 90ms ease, background 140ms ease;
+      user-select: none;
+    }
+
+    button:hover { background: var(--button-hover); }
+    button:active { transform: scale(0.98); }
+
+    .start { border-color: #2c8156; color: var(--success); }
+    .pause { border-color: #8f7a2d; color: var(--warning); }
+    .lap-stop { border-color: #8f3a3a; color: var(--danger); }
+    .reset { border-color: #3e5b91; color: var(--accent); }
+
+    .lap-count {
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .hint {
+      margin-top: 0.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="timer-card">
+    <h1>Dark Theme Timer</h1>
+    <div id="timeDisplay" class="display">00:00:00.0</div>
+    <div id="statusText" class="status">Ready.</div>
+
+    <div class="controls">
+      <button id="startBtn" class="start">Start</button>
+      <button id="pauseBtn" class="pause">Stop / Pause</button>
+      <button id="lapStopBtn" class="lap-stop">Lap &amp; Stop</button>
+      <button id="resetBtn" class="reset">Hold Reset (2s)</button>
+    </div>
+
+    <div id="lapCount" class="lap-count">Laps: 0</div>
+    <div class="hint">Hold the Reset button for at least 2 seconds.</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
